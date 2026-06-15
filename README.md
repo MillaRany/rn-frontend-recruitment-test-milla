@@ -6,44 +6,47 @@ The purpose of this test is to assess your logical reasoning ability, as well as
 
 ## The challenge
 
-A customer needs a simple **SpaceX launches explorer** app. Your role is to build a mobile application that allows users to browse SpaceX launches, visualize mission details, and keep track of their favorite missions.
+A customer needs a simple **data explorer** app. Your role is to build a mobile application that allows users to browse a list of items from a public GraphQL API, visualize item details, and keep track of their favorites.
 
-The app should consume data from the [SpaceX GraphQL API](https://spacex-production.up.railway.app/). You don't need to build or modify any backend, just consume it.
+The app should consume data from a **public GraphQL API of your choice**. You don't need to build or modify any backend, just consume it. Some suggestions to get you started:
+
+- [SpaceX GraphQL API](https://spacex-production.up.railway.app/) — launches, rockets, missions;
+- [Rick and Morty GraphQL API](https://rickandmortyapi.com/documentation) — characters, episodes, locations;
+- [Pokémon GraphQL API](https://pokeapi.co/docs/graphql) — Pokémon, types, abilities.
+
+Feel free to pick any other public GraphQL API you'd like, as long as it fits the screens and requirements described below. Adapt the entities mentioned (e.g. "mission", "launch") to whichever domain your chosen API covers (e.g. "character", "episode", "Pokémon").
 
 ### Screens
 
 The app must contain at least the following screens:
 
-#### 1. Launches List
+#### 1. Items List
 
-A scrollable list of SpaceX launches. Each item must display at minimum:
+A scrollable list of items from your chosen API. Each item must display at minimum:
 
-- Mission name;
-- Launch date;
-- Rocket name;
-- Launch site;
-- A visual indicator of whether the mission is marked as a favorite.
+- A name or title;
+- A couple of relevant secondary fields (e.g. date, type, location, status);
+- A visual indicator of whether the item is marked as a favorite.
 
-The list must support **filtering by launch success status** and **searching by mission name**.
+The list must support **filtering by a relevant status field** (e.g. launch success, character status, Pokémon type) and **searching by name**.
 
-#### 2. Launch Detail
+#### 2. Item Detail
 
-A detail screen for a single launch, accessible from the list. It must display all relevant mission fields available in the API and allow the user to **toggle the favorite status** of that launch. Favorites must be **persisted locally** — they should survive an app restart.
+A detail screen for a single item, accessible from the list. It must display all relevant fields available in the API and allow the user to **toggle the favorite status** of that item. Favorites must be **persisted locally** — they should survive an app restart.
 
 #### 3. Stats
 
 A screen (or a persistent section visible from the list) that shows aggregate information derived from the fetched data, such as:
 
-- Total number of launches;
-- Success rate (as a percentage);
-- Number of distinct rockets used.
+- Total number of items;
+- A relevant rate or percentage (e.g. success rate, percentage of a given status or type);
+- Number of distinct categories (e.g. rockets, species, types).
 
 These values must be derived from the data returned by the API, not hardcoded.
 
 ### Important notes
 
-- The SpaceX GraphQL API is public and requires no authentication. You can explore the schema at [`https://spacex-production.up.railway.app/`](https://spacex-production.up.railway.app/);
-- The API is maintained by the community and may occasionally be slow or unavailable. Plan for that;
+- The chosen GraphQL API must be public and require no authentication. The API is maintained by the community and may occasionally be slow or unavailable. Plan for that;
 - You are free to organize the folder structure as you see fit, but keep it coherent and justifiable;
 - There is no design specification to follow. Layout and visual decisions are yours to make.
 
@@ -51,7 +54,8 @@ These values must be derived from the data returned by the API, not hardcoded.
 
 - The project should use **Expo** (managed workflow);
 - Navigation must use **Expo Router**;
-- The codebase must be written in **TypeScript**.
+- The codebase must be written in **TypeScript**;
+- Use **Apollo Client** (`@apollo/client`) as the GraphQL client to connect to the chosen API.
 
 ## What will be evaluated
 
@@ -101,6 +105,8 @@ The repository must contain a `README.md` file with step-by-step instructions on
 - Run `yarn` to install dependencies;
 - Run `yarn start` to start the Expo development server;
 - Scan the QR code with Expo Go or press `i` / `a` to open the app in a simulator.
+
+> This repository already contains a pre-configured base Expo app (with TypeScript and Expo Router set up), so you can focus on building the features described above instead of project setup.
 
 ## Any questions?
 
