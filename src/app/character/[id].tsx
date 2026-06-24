@@ -14,13 +14,13 @@ const STATUS_COLOR = {
 } as const;
 
 export default function CharacterDetailScreen() {
-  const { character, loading, error, refetch, isFavorite, toggleFavorite } =
+  const { character, loading, error, statusCode, refetch, isFavorite, toggleFavorite } =
     useCharacterDetailController();
 
   return (
     <>
       <Stack.Screen options={{ title: character?.name ?? "Character" }} />
-      {loading ? <LoadingState /> : error || !character ? <ErrorState onRetry={() => refetch()} /> : (
+      {loading ? <LoadingState /> : error || !character ? <ErrorState statusCode={statusCode} onRetry={() => refetch()} /> : (
       <ScrollView style={styles.container}>
         <Image source={{ uri: character.image }} style={styles.image} />
 

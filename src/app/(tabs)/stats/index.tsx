@@ -6,10 +6,10 @@ import ErrorState from "../../../components/ErrorState";
 import { percentage } from "../../../utils/percentage";
 
 export default function StatsScreen() {
-  const { stats, loading, error, refetch } = useStatsController();
+  const { stats, loading, error, statusCode, refetch } = useStatsController();
 
   if (loading) return <LoadingState />;
-  if (error || !stats) return <ErrorState onRetry={() => refetch()} />;
+  if (error || !stats) return <ErrorState statusCode={statusCode} onRetry={() => refetch()} />;
 
   return (
     <ScrollView style={styles.container}>

@@ -10,10 +10,10 @@ import { useFavoritesController } from "./useFavoritesController";
 
 export default function FavoritesScreen() {
   const router = useRouter();
-  const { characters, ids, loading, error, refetch } = useFavoritesController();
+  const { characters, ids, loading, error, statusCode, refetch } = useFavoritesController();
   const toggle = useFavoritesStore((s) => s.toggle);
 
-  if (error) return <ErrorState onRetry={refetch} />;
+  if (error) return <ErrorState statusCode={statusCode} onRetry={refetch} />;
 
   if (loading && !characters.length) return <LoadingState />;
 
