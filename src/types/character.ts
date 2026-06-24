@@ -28,12 +28,14 @@ export interface CharacterData {
   character: Character
 }
 
+export type CharactersFilter = {
+  name?: string
+  status?: string
+}
+
 export interface CharactersVars {
   page?: number
-  filter?: {
-    name?: string
-    status?: string
-  }
+  filter?: CharactersFilter
 }
 
 export interface CharacterVars {

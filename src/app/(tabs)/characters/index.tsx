@@ -1,5 +1,7 @@
+import type { ApolloError } from "@apollo/client";
 import { FlatList, View } from "react-native";
 import CharacterCard from "../../../components/CharacterCard";
+import ErrorFooter from "../../../components/ErrorFooter";
 import ErrorState from "../../../components/ErrorState";
 import LoadingFooter from "../../../components/LoadingFooter";
 import LoadingState from "../../../components/LoadingState";
@@ -13,7 +15,10 @@ export default function CharactersScreen() {
   const {
     characters,
     loading,
+    paginating,
     error,
+    paginateError,
+    statusCode,
     search,
     status,
     handleLoadMore,
@@ -28,7 +33,7 @@ export default function CharactersScreen() {
   if (loading && !characters.length) return <LoadingState />;
 
   if (error && !characters.length) {
-    return <ErrorState message={error.message} onRetry={() => refetch()} />;
+    return <ErrorState statusCode={statusCode} onRetry={() => refetch()} />;
   }
 
   return (
@@ -51,7 +56,13 @@ export default function CharactersScreen() {
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.5}
         contentContainerStyle={styles.list}
-        ListFooterComponent={loading ? <LoadingFooter /> : null}
+        ListFooterComponent={
+          paginateError && characters.length > 0 ? (
+            <ErrorFooter
+              statusCode={((paginateError as ApolloError)?.networkError as any)?.statusCode}
+            />
+          ) : loading ? <LoadingFooter /> : null
+        }
       />
     </View>
   );
