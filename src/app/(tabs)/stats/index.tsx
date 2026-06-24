@@ -9,7 +9,7 @@ export default function StatsScreen() {
   const { stats, loading, error, refetch } = useStatsController();
 
   if (loading) return <LoadingState />;
-  if (error || !stats) return <ErrorState message={error?.message} onRetry={() => refetch()} />;
+  if (error || !stats) return <ErrorState onRetry={() => refetch()} />;
 
   return (
     <ScrollView style={styles.container}>

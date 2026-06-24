@@ -20,7 +20,7 @@ export default function CharacterDetailScreen() {
   return (
     <>
       <Stack.Screen options={{ title: character?.name ?? "Character" }} />
-      {loading ? <LoadingState /> : error || !character ? <ErrorState message={error?.message} onRetry={() => refetch()} /> : (
+      {loading ? <LoadingState /> : error || !character ? <ErrorState onRetry={() => refetch()} /> : (
       <ScrollView style={styles.container}>
         <Image source={{ uri: character.image }} style={styles.image} />
 

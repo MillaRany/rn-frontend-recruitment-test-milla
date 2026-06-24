@@ -13,7 +13,7 @@ export default function FavoritesScreen() {
   const { characters, ids, loading, error, refetch } = useFavoritesController();
   const toggle = useFavoritesStore((s) => s.toggle);
 
-  if (error) return <ErrorState message={error.message} onRetry={refetch} />;
+  if (error) return <ErrorState onRetry={refetch} />;
 
   if (loading && !characters.length) return <LoadingState />;
 

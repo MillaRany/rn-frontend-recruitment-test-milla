@@ -3,17 +3,15 @@ import { styles } from "./styles";
 import { mapErrorMessage } from "../../utils/errorMapper";
 
 interface ErrorStateProps {
-  message?: string;
   statusCode?: number | null;
   onRetry?: () => void;
 }
 
 export default function ErrorState({
-  message = "Something went wrong",
   statusCode,
   onRetry,
 }: ErrorStateProps) {
-  const mapped = mapErrorMessage(message, statusCode);
+  const mapped = mapErrorMessage(statusCode);
 
   return (
     <View style={styles.container}>

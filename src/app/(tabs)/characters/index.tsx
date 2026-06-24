@@ -28,7 +28,7 @@ export default function CharactersScreen() {
   if (loading && !characters.length) return <LoadingState />;
 
   if (error && !characters.length) {
-    return <ErrorState message={error.message} onRetry={() => refetch()} />;
+    return <ErrorState onRetry={() => refetch()} />;
   }
 
   return (
