@@ -1,9 +1,9 @@
 import { Text, View, ScrollView } from "react-native";
 import { useStatsController } from "./useStatsController";
 import { styles } from "./styles";
-import LoadingState from "../../../components/LoadingState";
-import ErrorState from "../../../components/ErrorState";
-import { percentage } from "../../../utils/percentage";
+import LoadingState from "@/components/LoadingState";
+import ErrorState from "@/components/ErrorState";
+import { percentage } from "@/utils/percentage";
 
 export default function StatsScreen() {
   const { stats, loading, error, refetch } = useStatsController();

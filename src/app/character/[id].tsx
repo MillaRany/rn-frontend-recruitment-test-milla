@@ -3,9 +3,9 @@ import { Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
 import { Stack } from "expo-router";
 import { useCharacterDetailController } from "./useCharacterDetailController";
 import { styles } from "./styles";
-import { theme } from "../../theme/colors";
-import LoadingState from "../../components/LoadingState";
-import ErrorState from "../../components/ErrorState";
+import { theme } from "@/theme/colors";
+import LoadingState from "@/components/LoadingState";
+import ErrorState from "@/components/ErrorState";
 
 const STATUS_COLOR = {
   Alive: theme.status.alive,
@@ -32,7 +32,7 @@ export default function CharacterDetailScreen() {
               <Text style={styles.statusText}>{character.status}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteButton}>
+          <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteButton} accessibilityLabel={isFavorite ? "Remove from favorites" : "Add to favorites"} accessibilityRole="button">
             <Ionicons
               name={isFavorite ? "heart" : "heart-outline"}
               size={28}

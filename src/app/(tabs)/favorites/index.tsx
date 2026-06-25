@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { useRouter } from "expo-router";
 import { FlatList, Text, View } from "react-native";
-import CharacterCard from "../../../components/CharacterCard";
-import ErrorFooter from "../../../components/ErrorFooter";
-import ErrorState from "../../../components/ErrorState";
-import LoadingFooter from "../../../components/LoadingFooter";
-import LoadingState from "../../../components/LoadingState";
-import { useFavoritesStore } from "../../../store/useFavoritesStore";
+import CharacterCard from "@/components/CharacterCard";
+import ErrorFooter from "@/components/ErrorFooter";
+import ErrorState from "@/components/ErrorState";
+import LoadingFooter from "@/components/LoadingFooter";
+import LoadingState from "@/components/LoadingState";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
 import { styles } from "./styles";
 import { useFavoritesController } from "./useFavoritesController";
 
@@ -50,6 +50,8 @@ export default function FavoritesScreen() {
       columnWrapperStyle={{ gap: 8 }}
       style={styles.listContainer}
       contentContainerStyle={styles.list}
+      accessibilityLabel="Favorites list"
+      accessibilityRole="list"
       ListFooterComponent={listFooter}
     />
   );

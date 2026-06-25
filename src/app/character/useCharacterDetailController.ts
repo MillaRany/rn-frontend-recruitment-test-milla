@@ -1,7 +1,7 @@
 import { useLocalSearchParams } from "expo-router";
-import { useCharacter } from "../../hooks/useCharacter";
-import { extractStatusCode } from "../../utils/error";
-import { useFavoritesStore } from "../../store/useFavoritesStore";
+import { useCharacter } from "@/hooks/useCharacter";
+import { extractStatusCode } from "@/utils/error";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
 
 export function useCharacterDetailController() {
   const { id } = useLocalSearchParams<{ id: string }>();

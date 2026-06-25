@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import ErrorFooter from "../ErrorFooter";
-import LoadingFooter from "../LoadingFooter";
+import ErrorFooter from "@/components/ErrorFooter";
+import LoadingFooter from "@/components/LoadingFooter";
 
 interface ListFooterProps {
   loading: boolean;

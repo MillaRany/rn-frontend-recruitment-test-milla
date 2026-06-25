@@ -1,13 +1,13 @@
 import { useCallback, useMemo } from "react";
 import { FlatList, View } from "react-native";
-import CharacterCard from "../../../components/CharacterCard";
-import ErrorState from "../../../components/ErrorState";
-import ListFooter from "../../../components/ListFooter";
-import LoadingState from "../../../components/LoadingState";
-import SearchBar from "../../../components/SearchBar";
-import StatusFilter from "../../../components/StatusFilter";
-import { useFavoritesStore } from "../../../store/useFavoritesStore";
-import { extractStatusCode } from "../../../utils/error";
+import CharacterCard from "@/components/CharacterCard";
+import ErrorState from "@/components/ErrorState";
+import ListFooter from "@/components/ListFooter";
+import LoadingState from "@/components/LoadingState";
+import SearchBar from "@/components/SearchBar";
+import StatusFilter from "@/components/StatusFilter";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
+import { extractStatusCode } from "@/utils/error";
 import { styles } from "./styles";
 import { useCharactersController } from "./useCharactersController";
 
@@ -70,6 +70,8 @@ export default function CharactersScreen() {
         contentContainerStyle={styles.list}
         refreshing={loading}
         onRefresh={refetch}
+        accessibilityLabel="Characters list"
+        accessibilityRole="list"
         ListFooterComponent={
           <ListFooter
             loading={paginating}

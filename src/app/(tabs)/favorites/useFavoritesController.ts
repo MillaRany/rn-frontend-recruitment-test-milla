@@ -1,6 +1,6 @@
-import { extractStatusCode } from "../../../utils/error";
-import { useFavorites } from "../../../hooks/useFavorites";
-import { useFavoritesStore } from "../../../store/useFavoritesStore";
+import { extractStatusCode } from "@/utils/error";
+import { useFavorites } from "@/hooks/useFavorites";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
 
 export function useFavoritesController() {
   const ids = useFavoritesStore((s) => s.ids);

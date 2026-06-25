@@ -1,5 +1,5 @@
 import { TextInput, View } from "react-native";
-import { theme } from "../../theme/colors";
+import { theme } from "@/theme/colors";
 import { styles } from "./styles";
 
 interface SearchBarProps {
@@ -18,6 +18,8 @@ export default function SearchBar({ value, onChangeText }: SearchBarProps) {
         onChangeText={onChangeText}
         autoCapitalize="none"
         autoCorrect={false}
+        accessibilityLabel="Search characters"
+        accessibilityRole="search"
       />
     </View>
   );

@@ -1,8 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
-import { theme } from "../../theme/colors";
-import type { Character } from "../../types/character";
+import { theme } from "@/theme/colors";
+import type { Character } from "@/types/character";
 import { Image, Text, TouchableOpacity, View } from "react-native";
-import { useDoubleTap } from "../../hooks/useDoubleTap";
+import { useDoubleTap } from "@/hooks/useDoubleTap";
 import { styles } from "./styles";
 
 const STATUS_COLOR = {
@@ -27,10 +27,10 @@ export default function CharacterCard({
   const handlePress = useDoubleTap(onPress, onToggleFavorite);
 
   return (
-    <TouchableOpacity style={styles.card} onPress={handlePress} activeOpacity={0.8}>
+    <TouchableOpacity style={styles.card} onPress={handlePress} activeOpacity={0.8} accessibilityLabel={character.name} accessibilityRole="button">
       <View style={styles.imageWrapper}>
         <Image source={{ uri: character.image }} style={styles.image} />
-        <TouchableOpacity style={styles.favoriteButton} onPress={onToggleFavorite}>
+        <TouchableOpacity style={styles.favoriteButton} onPress={onToggleFavorite} accessibilityLabel={isFavorite ? "Remove from favorites" : "Add to favorites"} accessibilityRole="button">
           <Ionicons
             name={isFavorite ? "heart" : "heart-outline"}
             size={20}

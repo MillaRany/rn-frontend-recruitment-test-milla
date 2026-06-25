@@ -1,11 +1,9 @@
 import { useState, useCallback } from "react";
 import { ApolloError } from "@apollo/client";
 import { useRouter } from "expo-router";
-import { useCharacters } from "../../../hooks/useCharacters";
-import { extractStatusCode } from "../../../utils/error";
-import type { CharactersFilter } from "../../../types/character";
-
-export type StatusFilter = "All" | "Alive" | "Dead" | "unknown";
+import { useCharacters } from "@/hooks/useCharacters";
+import { extractStatusCode } from "@/utils/error";
+import type { CharactersFilter, StatusFilter } from "@/types/character";
 
 export function useCharactersController() {
   const router = useRouter();

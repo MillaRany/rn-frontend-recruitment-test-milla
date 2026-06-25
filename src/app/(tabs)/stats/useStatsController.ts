@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { useCharacters } from "../../../hooks/useCharacters";
-import { extractStatusCode } from "../../../utils/error";
+import { useCharacters } from "@/hooks/useCharacters";
+import { extractStatusCode } from "@/utils/error";
 
 export function useStatsController() {
   const { data, loading, error: apolloError, refetch } = useCharacters(1);

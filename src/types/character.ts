@@ -46,6 +46,8 @@ export interface CharactersByIdsData {
   charactersByIds: Character[]
 }
 
+export type StatusFilter = "All" | "Alive" | "Dead" | "unknown";
+
 export interface CharactersByIdsVars {
   ids: string[]
 }
