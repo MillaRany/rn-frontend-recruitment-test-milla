@@ -6,10 +6,10 @@ import ErrorState from "../../../components/ErrorState";
 import { percentage } from "../../../utils/percentage";
 
 export default function StatsScreen() {
-  const { stats, loading, error, statusCode, refetch } = useStatsController();
+  const { stats, loading, error, refetch } = useStatsController();
 
   if (loading) return <LoadingState />;
-  if (error || !stats) return <ErrorState statusCode={statusCode} onRetry={() => refetch()} />;
+  if (error || !stats) return <ErrorState onRetry={() => refetch()} />;
 
   return (
     <ScrollView style={styles.container}>
@@ -22,23 +22,24 @@ export default function StatsScreen() {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Status Distribution (Page 1)</Text>
+        <Text style={styles.cardTitle}>Status Distribution (Sample)</Text>
+        <Text style={styles.sampleNote}>Based on {stats.sampleSize} characters from page 1</Text>
         <StatRow
           label="Alive"
-          value={`${stats.statusCount.Alive} (${percentage(stats.statusCount.Alive, stats.totalCharacters)})`}
+          value={`${stats.statusCount.Alive} (${percentage(stats.statusCount.Alive, stats.sampleSize)})`}
         />
         <StatRow
           label="Dead"
-          value={`${stats.statusCount.Dead} (${percentage(stats.statusCount.Dead, stats.totalCharacters)})`}
+          value={`${stats.statusCount.Dead} (${percentage(stats.statusCount.Dead, stats.sampleSize)})`}
         />
         <StatRow
           label="Unknown"
-          value={`${stats.statusCount.unknown} (${percentage(stats.statusCount.unknown, stats.totalCharacters)})`}
+          value={`${stats.statusCount.unknown} (${percentage(stats.statusCount.unknown, stats.sampleSize)})`}
         />
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.cardTitle}>Top Species (Page 1)</Text>
+        <Text style={styles.cardTitle}>Top Species (Sample)</Text>
         {stats.topSpecies.map(([species, count]) => (
           <StatRow key={species} label={species} value={count.toString()} />
         ))}

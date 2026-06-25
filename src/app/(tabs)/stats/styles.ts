@@ -26,6 +26,12 @@ export const styles = StyleSheet.create({
     marginBottom: 12,
     color: theme.text.primary,
   },
+  sampleNote: {
+    fontSize: 12,
+    color: theme.text.muted,
+    marginBottom: 8,
+    fontStyle: "italic",
+  },
   statRow: {
     flexDirection: "row",
     justifyContent: "space-between",

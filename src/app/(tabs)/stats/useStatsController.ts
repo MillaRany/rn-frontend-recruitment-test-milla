@@ -1,8 +1,13 @@
 import { useMemo } from "react";
-import { useCharacters } from "../../../hooks/useCharacters";
+import { useQuery } from "@apollo/client";
+import { GET_CHARACTERS } from "../../../api/queries";
+import type { CharactersData, CharactersVars } from "../../../types/character";
 
 export function useStatsController() {
-  const { data, loading, error, statusCode, refetch } = useCharacters(1);
+  const { data, loading, error, refetch } = useQuery<CharactersData, CharactersVars>(
+    GET_CHARACTERS,
+    { variables: { page: 1 } },
+  );
 
   const stats = useMemo(() => {
     if (!data?.characters) return null;
@@ -28,6 +33,7 @@ export function useStatsController() {
     return {
       totalCharacters: info.count,
       totalPages: info.pages,
+      sampleSize: results.length,
       statusCount,
       topSpecies: sortedSpecies,
     };
@@ -37,7 +43,6 @@ export function useStatsController() {
     stats,
     loading,
     error,
-    statusCode,
     refetch,
   };
 }
