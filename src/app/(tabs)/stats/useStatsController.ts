@@ -1,26 +1,40 @@
 import { useMemo } from "react";
+import { useFavorites } from "@/hooks/useFavorites";
 import { useCharacters } from "@/hooks/useCharacters";
+import { useFavoritesStore } from "@/store/useFavoritesStore";
 import { extractStatusCode } from "@/utils/error";
 
 export function useStatsController() {
-  const { data, loading, error: apolloError, refetch } = useCharacters(1);
+  const ids = useFavoritesStore((s) => s.ids);
+  const {
+    data: favData,
+    loading: favLoading,
+    error: favError,
+    refetch: favRefetch,
+  } = useFavorites(ids);
+  const {
+    data: allData,
+    error: allError,
+  } = useCharacters(1);
 
-  const error = apolloError ?? undefined;
-  const statusCode = extractStatusCode(apolloError);
+  const loading = favLoading;
+  const error = favError ? (favError ?? undefined) : undefined;
+  const statusCode = extractStatusCode(favError);
+  const refetch = favRefetch;
+
+  const favorites = favData?.charactersByIds ?? [];
+  const totalAll = allData?.characters.info.count ?? 0;
 
   const stats = useMemo(() => {
-    if (!data?.characters) return null;
-
-    const results = data.characters.results;
-    const info = data.characters.info;
+    if (!favorites.length) return null;
 
     const statusCount = {
-      Alive: results.filter((c) => c.status === "Alive").length,
-      Dead: results.filter((c) => c.status === "Dead").length,
-      unknown: results.filter((c) => c.status === "unknown").length,
+      Alive: favorites.filter((c) => c.status === "Alive").length,
+      Dead: favorites.filter((c) => c.status === "Dead").length,
+      unknown: favorites.filter((c) => c.status === "unknown").length,
     };
 
-    const speciesCount = results.reduce<Record<string, number>>((acc, c) => {
+    const speciesCount = favorites.reduce<Record<string, number>>((acc, c) => {
       acc[c.species] = (acc[c.species] || 0) + 1;
       return acc;
     }, {});
@@ -30,13 +44,12 @@ export function useStatsController() {
       .slice(0, 5);
 
     return {
-      totalCharacters: info.count,
-      totalPages: info.pages,
-      sampleSize: results.length,
+      totalFavorites: ids.length,
+      totalAll,
       statusCount,
       topSpecies: sortedSpecies,
     };
-  }, [data]);
+  }, [favorites, ids.length, totalAll]);
 
   return {
     stats,
@@ -44,5 +57,6 @@ export function useStatsController() {
     error,
     statusCode,
     refetch,
+    hasFavorites: ids.length > 0,
   };
 }
