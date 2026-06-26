@@ -32,7 +32,7 @@ export default function CharacterDetailScreen() {
               <Text style={styles.statusText}>{character.status}</Text>
             </View>
           </View>
-          <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteButton} accessibilityLabel={isFavorite ? "Remove from favorites" : "Add to favorites"} accessibilityRole="button">
+          <TouchableOpacity onPress={toggleFavorite} style={styles.favoriteButton} accessibilityLabel={isFavorite ? "Remove from favorites" : "Add to favorites"} accessibilityRole="button" testID="toggle-favorite">
             <Ionicons
               name={isFavorite ? "heart" : "heart-outline"}
               size={28}
