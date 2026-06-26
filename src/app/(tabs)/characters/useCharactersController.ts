@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { ApolloError } from "@apollo/client";
 import { useRouter } from "expo-router";
 import { useCharacters } from "@/hooks/useCharacters";
+import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { extractStatusCode } from "@/utils/error";
 import type { CharactersFilter, StatusFilter } from "@/types/character";
 
@@ -11,8 +12,10 @@ export function useCharactersController() {
   const [status, setStatus] = useState<StatusFilter>("All");
   const [paginateError, setPaginateError] = useState<ApolloError | null>(null);
 
+  const debouncedSearch = useDebouncedValue(search, 400);
+
   const filter: CharactersFilter = {
-    ...(search ? { name: search } : {}),
+    ...(debouncedSearch ? { name: debouncedSearch } : {}),
     ...(status !== "All" ? { status } : {}),
   };
 

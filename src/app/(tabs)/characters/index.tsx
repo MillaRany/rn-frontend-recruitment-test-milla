@@ -49,8 +49,6 @@ export default function CharactersScreen() {
     return extractStatusCode(paginateError);
   }, [paginateError]);
 
-  if (loading && !characters.length) return <LoadingState />;
-
   if (error && !characters.length) {
     return <ErrorState statusCode={statusCode} onRetry={() => refetch()} />;
   }
@@ -59,29 +57,33 @@ export default function CharactersScreen() {
     <View style={styles.container}>
       <SearchBar value={search} onChangeText={handleSearch} />
       <StatusFilter selected={status} onSelect={handleStatusChange} />
-      <FlatList
-        data={characters}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-        numColumns={2}
-        columnWrapperStyle={{ gap: 8 }}
-        onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.5}
-        contentContainerStyle={styles.list}
-        refreshing={loading}
-        onRefresh={refetch}
-        accessibilityLabel="Characters list"
-        accessibilityRole="list"
-        ListFooterComponent={
-          <ListFooter
-            loading={paginating}
-            error={!!paginateError}
-            hasData={characters.length > 0}
-            statusCode={paginateErrorCode}
-            onRetry={handleLoadMore}
-          />
-        }
-      />
+      {loading && !characters.length ? (
+        <LoadingState />
+      ) : (
+        <FlatList
+          data={characters}
+          keyExtractor={(item) => item.id}
+          renderItem={renderItem}
+          numColumns={2}
+          columnWrapperStyle={{ gap: 8 }}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.5}
+          contentContainerStyle={styles.list}
+          refreshing={loading}
+          onRefresh={refetch}
+          accessibilityLabel="Characters list"
+          accessibilityRole="list"
+          ListFooterComponent={
+            <ListFooter
+              loading={paginating}
+              error={!!paginateError}
+              hasData={characters.length > 0}
+              statusCode={paginateErrorCode}
+              onRetry={handleLoadMore}
+            />
+          }
+        />
+      )}
     </View>
   );
 }

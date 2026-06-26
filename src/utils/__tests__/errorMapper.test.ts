@@ -12,9 +12,8 @@ describe("mapErrorMessage", () => {
     expect(r.message).toContain("multiverse");
     expect(r.hint).toBeTruthy();
   });
-
-  it("429 -> too many portal jumps", () => {
-    expect(mapErrorMessage(429).message).toContain("portal");
+  it("429 -> rate-limited by the Citadel", () => {
+    expect(mapErrorMessage(429).message).toContain("rate-limited");
   });
 
   it("500 -> portal fluid", () => {
