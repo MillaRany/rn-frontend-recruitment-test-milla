@@ -42,8 +42,8 @@
   },
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android-emulator": "expo start --android",
+    "android-tunnel": "expo start --tunnel --clear",
     "web": "expo start --web",
     "lint": "expo lint",
     "test": "jest"
