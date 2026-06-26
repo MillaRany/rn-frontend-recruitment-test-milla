@@ -46,4 +46,22 @@ export const styles = StyleSheet.create({
     fontWeight: "500",
     color: theme.text.primary,
   },
+  emptyCard: {
+    marginBottom: 16,
+    padding: 24,
+    borderRadius: 12,
+    backgroundColor: theme.surface.card,
+    alignItems: "center",
+  },
+  emptyText: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: theme.text.primary,
+    marginBottom: 8,
+  },
+  emptyHint: {
+    fontSize: 14,
+    color: theme.text.muted,
+    textAlign: "center",
+  },
 });
