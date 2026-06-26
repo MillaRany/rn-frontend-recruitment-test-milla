@@ -13,8 +13,8 @@ describe("mapErrorMessage", () => {
     expect(r.hint).toBeTruthy();
   });
 
-  it("429 -> rate-limited", () => {
-    expect(mapErrorMessage(429).message).toContain("rate-limited");
+  it("429 -> too many portal jumps", () => {
+    expect(mapErrorMessage(429).message).toContain("portal");
   });
 
   it("500 -> portal fluid", () => {
