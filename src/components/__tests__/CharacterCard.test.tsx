@@ -49,14 +49,14 @@ describe("CharacterCard", () => {
 
   it("tap unico chama onPress", async () => {
     const { getByLabelText } = await render(<CharacterCard {...props} />);
-    fireEvent.press(getByLabelText("Rick Sanchez"));
+    await fireEvent.press(getByLabelText("Rick Sanchez"));
     jest.advanceTimersByTime(400);
     expect(props.onPress).toHaveBeenCalledTimes(1);
   });
 
   it("botao de favorito chama onToggleFavorite", async () => {
     const { getByLabelText } = await render(<CharacterCard {...props} />);
-    fireEvent.press(getByLabelText("Add to favorites"));
+    await fireEvent.press(getByLabelText("Add to favorites"));
     jest.advanceTimersByTime(400);
     expect(props.onToggleFavorite).toHaveBeenCalledTimes(1);
     expect(props.onPress).not.toHaveBeenCalled();
